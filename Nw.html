@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Rahul &amp; Sakshi: Engagement Invitation</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600&family=Smooch&family=Caveat:wght@600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fffbf6;
+            --bg-mesh: #fff0ea;
+            --fg: #2e241e;
+            --mu: #7c685b;
+            --terra: #b5493b;
+            --rose: #e65c6f;
+            --pink-accent: #ff4d79;
+            --cream: #ffffff;
+            --gold: #d4af37;
+            --gold-soft: #f1dfa8;
+            --border-floral: #edd6c0;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            background: var(--bg);
+            background-image:
+                radial-gradient(circle at 10% 15%, #ffe4ec 0%, transparent 40%),
+                radial-gradient(circle at 90% 85%, #fff0e2 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, #fffbf6 0%, #fff4f0 100%);
+            color: var(--fg);
+            font: 400 15px/1.5 "Jost", sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* VIBRANT & VISIBLE FLOATING PINK PETALS */
+        .petals-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: radial-gradient(circle at 25% 25%, #ffb6c7 0%, #ff527b 70%, #d81b60 100%);
+            border-radius: 80% 0 80% 0;
+            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.35);
+            opacity: 0.88;
+            animation: floralFall linear infinite;
+            filter: drop-shadow(0 2px 5px rgba(255, 64, 129, 0.4));
+        }
+
+        /* Alternate petal shape */
+        .petal.alt {
+            border-radius: 50% 50% 50% 0;
+            background: radial-gradient(circle at 35% 35%, #ffd4de 0%, #ff6b8b 65%, #c2185b 100%);
+        }
+
+        @keyframes floralFall {
+            0% {
+                transform: translateY(-40px) translateX(0) rotate(0deg) rotateY(0deg) scale(0.85);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.95;
+            }
+
+            50% {
+                transform: translateY(50vh) translateX(35px) rotate(180deg) rotateY(180deg) scale(1.05);
+            }
+
+            75% {
+                transform: translateY(75vh) translateX(-25px) rotate(270deg) rotateY(90deg) scale(0.95);
+            }
+
+            90% {
+                opacity: 0.95;
+            }
+
+            100% {
+                transform: translateY(105vh) translateX(40px) rotate(360deg) rotateY(360deg) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        .lab {
+            font: 600 11px "Jost", sans-serif;
+            letter-spacing: .24em;
+            text-transform: uppercase;
+        }
+
+        .amp {
+            font: italic 500 32px/1 "Cormorant Garamond", serif;
+            color: var(--terra);
+        }
+
+        .it {
+            font: italic 500 21px/1.3 "Cormorant Garamond", serif;
+        }
+
+        /* TIMELINE STORY TRACK */
+        .mem {
+            position: relative;
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 10px 18px 40px 58px;
+            z-index: 2;
+        }
+
+        .mem::before {
+            content: "";
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            border-left: 2px dashed #dfbe9f;
+        }
+
+        .ch {
+            position: relative;
+            padding: 38px 0 32px;
+        }
+
+        /* Floral vine bullet along the track */
+        .ch::before {
+            content: "❀";
+            position: absolute;
+            left: -37px;
+            top: 36px;
+            width: 22px;
+            height: 22px;
+            line-height: 20px;
+            text-align: center;
+            font-size: 15px;
+            border-radius: 50%;
+            color: #fff;
+            background: linear-gradient(135deg, var(--pink-accent), var(--terra));
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 1.5px var(--gold);
+        }
+
+        .kk {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--terra);
+        }
+
+        .kk i {
+            flex: 1;
+            border-top: 1px solid var(--gold);
+            opacity: .6;
+        }
+
+        .kk b {
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: .08em;
+        }
+
+        .h {
+            font: italic 600 32px/1.15 "Cormorant Garamond", serif;
+            margin: 12px 0 22px;
+            color: #2b1f1a;
+        }
+
+        .r2 {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        /* POLAROID FRAME WITH GOLD & PINK ACCENTS */
+        .pol {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            background: #ffffff;
+            padding: 10px 10px 4px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 16px 28px -12px rgba(181, 73, 59, 0.22);
+            border: 1px solid #f6e6d8;
+            transform: rotate(var(--r, 0deg));
+            color: #3a2f28;
+        }
+
+        /* Washi tape with floral sparkle */
+        .pol::before {
+            content: "🌸";
+            position: absolute;
+            left: 50%;
+            top: -12px;
+            width: 68px;
+            height: 24px;
+            margin-left: -34px;
+            line-height: 22px;
+            text-align: center;
+            font-size: 13px;
+            background: linear-gradient(90deg, #fce4ec, #f8bbd0);
+            border: 1px dashed #f48fb1;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: rotate(-3deg);
+            z-index: 2;
+        }
+
+        .pol img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 2px;
+            filter: saturate(1.02) contrast(1.02);
+        }
+
+        .pol p {
+            font: 700 20px/1.15 "Caveat", cursive;
+            padding: 10px 2px 10px;
+            text-align: center;
+            color: #4f3c32;
+        }
+
+        .q {
+            font: italic 600 30px/1.15 "Cormorant Garamond", serif;
+            margin-top: 26px;
+            color: #2b1f1a;
+        }
+
+        .q2 {
+            font: 700 22px/1.2 "Caveat", cursive;
+            color: var(--terra);
+            margin-top: 8px;
+        }
+
+        .rv {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .8s, transform .8s;
+        }
+
+        .rv.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        .pol.rv {
+            transform: translateY(24px) rotate(var(--r, 0deg));
+        }
+
+        .pol.rv.in {
+            transform: rotate(var(--r, 0deg));
+        }
+
+        /* INVITATION CARD SECTION */
+        .iv {
+            background: linear-gradient(135deg, #b5493b, #d95368);
+            padding: 56px 16px;
+            position: relative;
+            z-index: 2;
+            box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card {
+            max-width: 440px;
+            margin: 0 auto;
+            background: var(--cream);
+            color: #2a2420;
+            text-align: center;
+            padding: 46px 26px 40px;
+            position: relative;
+            border-radius: 6px;
+            outline: 1.5px solid var(--gold);
+            outline-offset: -10px;
+            box-shadow: 0 24px 48px -18px rgba(72, 25, 18, 0.4), 0 0 0 1px #fff;
+        }
+
+        .card::before,
+        .card::after {
+            content: "🌸";
+            position: absolute;
+            font-size: 18px;
+        }
+
+        .card::before {
+            top: 14px;
+            left: 16px;
+        }
+
+        .card::after {
+            bottom: 14px;
+            right: 16px;
+        }
+
+        .in-n {
+            font: 400 68px/.9 "Smooch", cursive;
+            margin: 14px 0 6px;
+            color: #301f19;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .orn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            color: var(--pink-accent);
+            margin: 22px 0;
+            font-size: 14px;
+        }
+
+        .orn::before,
+        .orn::after {
+            content: "";
+            flex: 1;
+            border-top: 1px solid #ffccd5;
+        }
+
+        .ev {
+            font: italic 600 28px/1.1 "Cormorant Garamond", serif;
+            color: var(--terra);
+            letter-spacing: .02em;
+        }
+
+        .big {
+            font: 400 120px/.75 "Smooch", cursive;
+            margin: 18px 0 8px;
+            color: var(--terra);
+        }
+
+        .mo {
+            font: italic 600 28px/1 "Cormorant Garamond", serif;
+            letter-spacing: .08em;
+            color: #2a2420;
+        }
+
+        .wt {
+            font: 600 12px "Jost", sans-serif;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            margin: 10px 0 0;
+            color: var(--mu);
+        }
+
+        .vn {
+            font: italic 600 28px/1.1 "Cormorant Garamond", serif;
+            margin: 12px 0 4px;
+            color: #2b1f1a;
+        }
+
+        .ct {
+            font: 500 14px "Jost", sans-serif;
+            color: #7a6556;
+        }
+
+        .tl {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+            text-align: left;
+        }
+
+        .tl div {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .tl b {
+            flex: none;
+            font: italic 600 19px/1.15 "Cormorant Garamond", serif;
+            color: var(--terra);
+        }
+
+        .tl u {
+            flex: 1;
+            min-width: 10px;
+            border-bottom: 1.5px dotted #d7bc9e;
+            transform: translateY(-4px);
+        }
+
+        .tl span {
+            font: italic 500 18px/1.15 "Cormorant Garamond", serif;
+            color: #382c25;
+        }
+
+        .pill {
+            display: inline-block;
+            text-decoration: none;
+            font: 600 13px "Jost", sans-serif;
+            letter-spacing: .06em;
+            padding: 12px 24px;
+            border-radius: 99px;
+            background: linear-gradient(135deg, #2b1f1a, #3d2b24);
+            color: #fff9f2;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .rs {
+            background: #241c18;
+            background-image: radial-gradient(ellipse at center, #3a2228 0%, #1a1214 100%);
+            color: #fff4ea;
+            text-align: center;
+            padding: 56px 20px 48px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .rs .q {
+            margin-top: 0;
+            font-size: 36px;
+            color: #fff2e4;
+        }
+
+        .rs .q2 {
+            color: #f7b4a8;
+            margin-bottom: 24px;
+        }
+
+        .yes {
+            background: linear-gradient(135deg, var(--terra), #e04f64);
+            color: #fffdf9;
+            display: block;
+            max-width: 300px;
+            margin: 0 auto 10px;
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .so {
+            margin-top: 48px;
+        }
+
+        .wl {
+            font: 400 36px/1 "Smooch", cursive;
+            color: #f5b3a8;
+        }
+
+        .nm {
+            font: 400 58px/.95 "Smooch", cursive;
+            color: #fffdf9;
+        }
+
+        /* ENVELOPE OPENING COVER */
+        body.locked {
+            overflow: hidden;
+        }
+
+        body.locked main,
+        body.locked .iv,
+        body.locked .rs {
+            display: none;
+        }
+
+        .cv {
+            position: fixed;
+            inset: 0;
+            z-index: 15;
+            display: flex;
+            overflow: auto;
+            color: #3a2a1e;
+            background:
+                radial-gradient(circle at 10% 10%, #ffe4ec 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, #fde8db 0%, transparent 45%),
+                linear-gradient(135deg, #f8eddf 0%, #edd9c7 100%);
+        }
+
+        .cv::before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border: 2px dashed #b98e6a;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .cv.out {
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: transform .9s cubic-bezier(.7, 0, .3, 1), opacity .9s;
+        }
+
+        .kci {
+            margin: auto;
+            width: min(100%, 450px);
+            padding: 40px 22px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .floral-badge {
+            font-size: 13px;
+            color: var(--terra);
+            letter-spacing: .24em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floral-badge::before,
+        .floral-badge::after {
+            content: "🌸";
+            font-size: 13px;
+        }
+
+        .cl {
+            position: relative;
+            width: min(92vw, 340px);
+            height: 292px;
+            margin: 10px 0 4px;
+        }
+
+        .pr {
+            position: absolute;
+            margin: 0;
+            background: #ffffff;
+            padding: 8px 8px 6px;
+            border-radius: 4px;
+            box-shadow: 0 10px 22px -6px rgba(120, 68, 34, 0.25);
+            transform: rotate(var(--r));
+            border: 1px solid #ebd7c5;
+        }
+
+        .pr img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .tp {
+            position: absolute;
+            left: 50%;
+            top: -9px;
+            width: 56px;
+            height: 20px;
+            margin-left: -28px;
+            background: linear-gradient(90deg, #fce4ec, #f8bbd0);
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transform: rotate(-4deg);
+            z-index: 2;
+        }
+
+        .pr.m {
+            left: 50%;
+            top: 0;
+            width: 238px;
+            margin-left: -119px;
+        }
+
+        .pr.m img {
+            aspect-ratio: 3/4;
+            object-position: center 6%;
+        }
+
+        .pr.s1 {
+            left: 0;
+            top: 146px;
+            width: 114px;
+        }
+
+        .pr.s1 img {
+            aspect-ratio: 3/4;
+            object-position: top center;
+        }
+
+        .pr.s2 {
+            right: 0;
+            top: 160px;
+            width: 114px;
+        }
+
+        .pr.s2 img {
+            aspect-ratio: 3/4;
+            object-position: 85% top;
+        }
+
+        .pm {
+            position: absolute;
+            right: -6px;
+            top: -26px;
+            width: 86px;
+            color: #b5493b;
+            opacity: .9;
+            mix-blend-mode: multiply;
+            transform: rotate(14deg);
+            z-index: 3;
+            font-family: "Jost", sans-serif;
+        }
+
+        .cn {
+            font: 400 clamp(58px, 19vw, 84px)/.88 "Smooch", cursive;
+            color: #2b1c15;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+        }
+
+        .cn .amp {
+            font-size: .52em;
+            color: var(--pink-accent);
+            margin-right: .14em;
+        }
+
+        .kci .it {
+            color: #4b362a;
+            font-size: 22px;
+        }
+
+        /* WAX SEAL */
+        .seal {
+            position: relative;
+            width: 88px;
+            height: 88px;
+            margin-top: 8px;
+            border: 0;
+            cursor: pointer;
+            color: #fff3ea;
+            font: italic 600 28px/1 "Cormorant Garamond", serif;
+            background: radial-gradient(circle at 35% 30%, #e91e63, #880e4f 74%);
+            border-radius: 50% 46% 52% 48%/48% 52% 46% 50%;
+            box-shadow: 0 8px 18px -4px rgba(136, 14, 79, 0.5), inset 0 0 0 5px #ad1457, inset 0 0 0 7px rgba(255, 255, 255, 0.25);
+            animation: pulse 2.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                transform: scale(1.06);
+            }
+        }
+
+        .seal:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+
+        /* CHAPTER TWO VIEWPORT */
+        .ph {
+            position: relative;
+            aspect-ratio: 9/14;
+            max-height: 520px;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .ph img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity .6s;
+        }
+
+        #im-i {
+            object-position: center 2%;
+        }
+
+        #im-t {
+            object-position: center 3%;
+        }
+
+        .ph img.on {
+            opacity: 1;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding-bottom: 12px;
+        }
+
+        .dots i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #f8bbd0;
+            transition: background .3s;
+        }
+
+        .dots i.on {
+            background: var(--pink-accent);
+        }
+
+        .flip {
+            font: 700 22px "Caveat", cursive;
+            color: var(--pink-accent);
+            text-align: center;
+            margin-top: 14px;
+        }
+
+        .pol.sh {
+            animation: shuf .5s;
+        }
+
+        @keyframes shuf {
+            40% {
+                transform: translateX(16px) rotate(3deg);
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+
+            .seal,
+            .petal {
+                animation: none;
+            }
+
+            .cv.out {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="locked">
+
+    <!-- PROMINENT FLOATING PINK FLORAL SHOWER (18 PETALS WITH VARIED PATHS & TIMING) -->
+    <div class="petals-layer" aria-hidden="true">
+        <div class="petal" style="left: 6%; width: 18px; height: 22px; animation-duration: 9s; animation-delay: 0s;">
+        </div>
+        <div class="petal alt"
+            style="left: 14%; width: 22px; height: 26px; animation-duration: 12s; animation-delay: 3s;"></div>
+        <div class="petal"
+            style="left: 22%; width: 16px; height: 20px; animation-duration: 10s; animation-delay: 1.5s;"></div>
+        <div class="petal alt"
+            style="left: 31%; width: 24px; height: 28px; animation-duration: 14s; animation-delay: 5s;"></div>
+        <div class="petal"
+            style="left: 40%; width: 17px; height: 21px; animation-duration: 8.5s; animation-delay: 2.2s;"></div>
+        <div class="petal alt"
+            style="left: 49%; width: 20px; height: 24px; animation-duration: 11s; animation-delay: 0.8s;"></div>
+        <div class="petal"
+            style="left: 58%; width: 15px; height: 19px; animation-duration: 9.5s; animation-delay: 4.2s;"></div>
+        <div class="petal alt"
+            style="left: 67%; width: 25px; height: 29px; animation-duration: 13s; animation-delay: 2.7s;"></div>
+        <div class="petal"
+            style="left: 76%; width: 19px; height: 23px; animation-duration: 10.5s; animation-delay: 6s;"></div>
+        <div class="petal alt"
+            style="left: 84%; width: 21px; height: 25px; animation-duration: 11.5s; animation-delay: 1.2s;"></div>
+        <div class="petal" style="left: 93%; width: 17px; height: 20px; animation-duration: 9s; animation-delay: 4.8s;">
+        </div>
+
+        <!-- Second Wave for Continuous Rain -->
+        <div class="petal alt"
+            style="left: 10%; width: 16px; height: 19px; animation-duration: 13.5s; animation-delay: 7s;"></div>
+        <div class="petal"
+            style="left: 27%; width: 20px; height: 24px; animation-duration: 10s; animation-delay: 8.5s;"></div>
+        <div class="petal alt"
+            style="left: 45%; width: 18px; height: 22px; animation-duration: 12s; animation-delay: 6.5s;"></div>
+        <div class="petal" style="left: 62%; width: 22px; height: 27px; animation-duration: 11s; animation-delay: 9s;">
+        </div>
+        <div class="petal alt"
+            style="left: 79%; width: 16px; height: 20px; animation-duration: 9.8s; animation-delay: 7.8s;"></div>
+        <div class="petal"
+            style="left: 88%; width: 23px; height: 27px; animation-duration: 12.5s; animation-delay: 8.2s;"></div>
+    </div>
+
+    <!-- ENVELOPE OPENING COVER -->
+    <section class="cv" id="cv">
+        <div class="kci">
+            <div class="floral-badge lab">Together With Their Families</div>
+            <div class="cl">
+                <!-- Couple Cover Photo -->
+                <figure class="pr m" style="--r:-2deg">
+                    <img src="https://lh3.googleusercontent.com/d/1cDVEWWFITNPAwTTIbKS54TfgsvfwOAv7" alt="Couple Cover">
+                    <i class="tp"></i>
+                </figure>
+                <!-- Rahul as Child -->
+                <figure class="pr s1" style="--r:-8deg">
+                    <img src="https://lh3.googleusercontent.com/d/1qV3NQ6alaGVfpxjEQ3BGcjmoH7u3_Y-F"
+                        alt="Rahul as a child">
+                    <i class="tp"></i>
+                </figure>
+                <!-- Sakshi as Child -->
+                <figure class="pr s2" style="--r:7deg">
+                    <img id="cv-g" src="https://lh3.googleusercontent.com/d/1kv_ihJmWQmHlmL_aULjJwPu2H6BHhWZn"
+                        alt="Sakshi as a child">
+                    <i class="tp"></i>
+                </figure>
+
+                <!-- Postal Stamp Motif -->
+                <svg class="pm" viewBox="0 0 100 100" aria-hidden="true">
+                    <defs>
+                        <path id="pmr" d="M50 14a36 36 0 1 1-.01 0" />
+                    </defs>
+                    <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2" />
+                    <circle cx="50" cy="50" r="24" fill="none" stroke="currentColor" stroke-width="1" />
+                    <text font-size="9" font-weight="600">
+                        <textPath href="#pmr" textLength="220" lengthAdjust="spacing">MODINAGAR • ENGAGEMENT</textPath>
+                    </text>
+                    <text x="50" y="49" font-size="11" text-anchor="middle" font-weight="600">21 OCT</text>
+                    <text x="50" y="61" font-size="9" text-anchor="middle">2026</text>
+                </svg>
+            </div>
+
+            <div class="cn"><span>Rahul</span><br><span class="amp">&amp;</span><span>Sakshi</span></div>
+            <div class="it">Two hearts, one lifelong promise.</div>
+            <button class="seal" id="sl" type="button" aria-label="Open the invitation"><span>R&amp;S</span></button>
+            <div class="lab" style="color: #6a4935; margin-top: 2px;">Tap Seal to Open</div>
+        </div>
+    </section>
+
+    <!-- CHAPTER STORY TIMELINE -->
+    <main class="mem">
+        <!-- CHAPTER 1: CHILDHOOD PHOTOS -->
+        <section class="ch" id="c1">
+            <div class="kk lab rv"><span>CHAPTER ONE</span><i></i><b>THE BEGINNING</b></div>
+            <h2 class="h rv">Growing Up Worlds Apart</h2>
+            <div class="r2">
+                <!-- Rahul Childhood Photo -->
+                <figure class="pol rv" style="--r:-3deg">
+                    <img id="im-b" src="https://lh3.googleusercontent.com/d/1qV3NQ6alaGVfpxjEQ3BGcjmoH7u3_Y-F"
+                        alt="Rahul as a child" style="aspect-ratio:3/4;object-position:top center">
+                    <p>Rahul • Already calling his future partner</p>
+                </figure>
+                <!-- Sakshi Childhood Photo shifted left in container -->
+                <figure class="pol rv" style="--r:3deg;margin-top:20px">
+                    <img id="im-g" src="https://lh3.googleusercontent.com/d/1kv_ihJmWQmHlmL_aULjJwPu2H6BHhWZn"
+                        alt="Sakshi as a toddler" style="aspect-ratio:3/4;object-position:85% top">
+                    <p>Sakshi • Always smiling by the stream</p>
+                </figure>
+            </div>
+        </section>
+
+        <!-- CHAPTER 2: COUPLE PHOTO CAROUSEL -->
+        <section class="ch" id="c2">
+            <div class="kk lab rv"><span>CHAPTER TWO</span><i></i><b>WRITTEN IN THE STARS</b></div>
+            <h2 class="h rv">Two Paths, One Story</h2>
+            <figure class="pol rv" id="pol2" style="--r:-2deg">
+                <div class="ph" id="ph" role="button" tabindex="0" aria-label="Tap to switch photo">
+                    <img id="im-i" class="on"
+                        src="https://lh3.googleusercontent.com/d/1cDVEWWFITNPAwTTIbKS54TfgsvfwOAv7"
+                        alt="Sakshi &amp; Rahul Together">
+                    <img id="im-t" src="https://lh3.googleusercontent.com/d/1HdH_z03veKhzgkKVVCwpFATfBObcg7Fp"
+                        alt="Rahul &amp; Sakshi Portrait">
+                </div>
+                <p id="cp">Tap anywhere on the photo to see more</p>
+                <div class="dots"><i class="on"></i><i></i></div>
+            </figure>
+            <div class="flip rv">Tap photo to flip memory</div>
+            <div class="q rv">"A promise for forever..."</div>
+            <div class="q2 rv">Two souls getting ready to say "I do".</div>
+        </section>
+
+        <!-- CHAPTER 3: CELEBRATION PHOTO -->
+        <section class="ch" id="c3">
+            <div class="kk lab rv"><span>CHAPTER THREE</span><i></i><b>THE CELEBRATION</b></div>
+            <h2 class="h rv">We Are Getting Engaged!</h2>
+            <figure class="pol rv" style="--r:2deg;width:92%;margin:0 auto">
+                <img id="im-s" src="https://lh3.googleusercontent.com/d/1HdH_z03veKhzgkKVVCwpFATfBObcg7Fp"
+                    alt="Rahul and Sakshi" style="aspect-ratio:9/13;object-position:center 3%">
+                <p>Together with our families</p>
+            </figure>
+        </section>
+    </main>
+
+    <!-- INVITATION CARD -->
+    <section class="iv">
+        <div class="card">
+            <div class="floral-badge lab" style="color:var(--terra); justify-content:center;">YOU ARE CORDIALLY INVITED
+                TO THE</div>
+            <div class="in-n">Rahul &amp; Sakshi</div>
+            <div class="orn">✦ 🌸 ✦</div>
+            <div class="ev">Engagement Ceremony</div>
+            <div class="big">21</div>
+            <div class="mo">OCTOBER 2026</div>
+            <div class="wt">WEDNESDAY • 12:00 PM ONWARDS</div>
+            <div class="orn">✦ 🌸 ✦</div>
+            <div class="vn">Hotel De Meridian</div>
+            <div class="ct">Modinagar, Uttar Pradesh</div>
+            <div class="tl">
+                <div><b>12:00 PM</b><u></u><span>Welcome of Guests</span></div>
+                <div><b>01:00 PM</b><u></u><span>Ring Ceremony &amp; Exchange of Vows</span></div>
+                <div><b>02:30 PM</b><u></u><span>Lunch &amp; Celebration</span></div>
+            </div>
+            <div style="margin-top:28px">
+                <a class="pill" href="https://maps.google.com/?q=Hotel+De+Meridian+Modinagar" target="_blank"
+                    rel="noopener">Get Directions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / RSVP -->
+    <section class="rs">
+        <div class="q">Celebrate Our Ring Ceremony With Us</div>
+        <div class="q2">Your love, presence, and blessings mean the world to us!</div>
+        <a class="pill yes" href="tel:+919876543210">Contact &amp; RSVP</a>
+        <div class="so">
+            <div class="wl">Warmly invited by</div>
+            <div class="nm">Verma Families</div>
+        </div>
+    </section>
+
+    <script>
+        // Open Envelope Animation
+        const sealBtn = document.getElementById('sl');
+        const cover = document.getElementById('cv');
+        sealBtn.addEventListener('click', () => {
+            cover.classList.add('out');
+            setTimeout(() => {
+                document.body.classList.remove('locked');
+            }, 400);
+        });
+
+        // Photo Carousel Toggle
+        const ph = document.getElementById('ph');
+        const img1 = document.getElementById('im-i');
+        const img2 = document.getElementById('im-t');
+        const dots = document.querySelectorAll('.dots i');
+        const pol2 = document.getElementById('pol2');
+
+        if (ph) {
+            ph.addEventListener('click', () => {
+                pol2.classList.add('sh');
+                setTimeout(() => pol2.classList.remove('sh'), 500);
+                const isFirst = img1.classList.contains('on');
+                img1.classList.toggle('on', !isFirst);
+                img2.classList.toggle('on', isFirst);
+                dots[0].classList.toggle('on', !isFirst);
+                dots[1].classList.toggle('on', isFirst);
+            });
+        }
+
+        // Scroll Reveal Observer
+        const rvElements = document.querySelectorAll('.rv');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        rvElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
