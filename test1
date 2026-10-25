@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul & Ananya | Editorial Wedding Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: '#3A3335', // Deep dusty rose/charcoal for text
+                        rosewater: '#FADADD',
+                        blush: '#FFE4E1',
+                        paper: '#FFF9F9'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Fluid Animated Background */
+        body {
+            background: linear-gradient(-45deg, #FFF9F9, #FFE4E1, #FADADD, #FFFFFF);
+            background-size: 400% 400%;
+            animation: fluidGradient 15s ease infinite;
+            background-attachment: fixed;
+        }
+
+        @keyframes fluidGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 12px 40px 0 rgba(225, 190, 195, 0.3);
+        }
+
+        /* Minimalist Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(250, 218, 221, 0.8); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(200, 160, 165, 0.8); }
+
+        /* Fade-in Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Editorial Image Hovers */
+        .editorial-img {
+            transition: all 0.7s ease;
+            filter: grayscale(10%) contrast(105%);
+        }
+        .editorial-img:hover {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.02);
+            z-index: 50;
+        }
+
+        /* Input Styling */
+        .input-editorial {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(58, 51, 53, 0.3);
+            border-radius: 0;
+            padding: 10px 0;
+            transition: border-color 0.3s ease;
+        }
+        .input-editorial:focus {
+            outline: none;
+            border-bottom: 1px solid rgba(58, 51, 53, 1);
+        }
+
+        /* Custom Modal */
+        .modal-bg {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        .modal-bg.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: scale(0.95);
+            transition: all 0.4s ease;
+        }
+        .modal-bg.active .modal-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="font-sans text-charcoal antialiased selection:bg-rosewater selection:text-charcoal min-h-screen p-4 md:p-8 lg:p-12">
+
+    <!-- The Floating Glass Invitation Card -->
+    <main class="glass-panel max-w-5xl mx-auto rounded-3xl overflow-hidden relative">
+        
+        <!-- Subtle Inner Border -->
+        <div class="absolute inset-4 border border-white/50 rounded-2xl pointer-events-none z-50"></div>
+
+        <div class="p-8 md:p-16 lg:p-24 h-full relative z-10">
+            
+            <!-- 1. HERO SECTION -->
+            <header class="text-center pb-24 border-b border-charcoal/10 fade-in">
+                <p class="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-charcoal/60 mb-8">The Wedding Celebration Of</p>
+                
+                <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl font-light tracking-tight leading-none mb-10">
+                    Rahul <br>
+                    <span class="italic text-5xl md:text-7xl text-charcoal/70">&amp;</span> <br>
+                    Ananya
+                </h1>
+                
+                <div class="flex items-center justify-center gap-6 font-sans text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase mt-12 text-charcoal/80">
+                    <span>October 25, 2026</span>
+                    <span class="w-1 h-1 bg-charcoal/40 rounded-full"></span>
+                    <span>Modinagar, UP</span>
+                </div>
+            </header>
+
+            <!-- 2. EDITORIAL PHOTO GALLERY (Exactly 4 Photos) -->
+            <section class="py-24 border-b border-charcoal/10">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="font-serif italic text-3xl md:text-4xl text-charcoal/80">A Love Story</h2>
+                    <p class="font-sans text-xs tracking-widest uppercase mt-4 text-charcoal/50">Captured in time</p>
+                </div>
+
+                <!-- Asymmetrical Overlapping Grid -->
+                <div class="relative w-full max-w-4xl mx-auto h-[800px] md:h-[900px] fade-in">
+                    
+                    <!-- Photo 1: Large Main Portrait (Left) -->
+                    <div class="absolute top-0 left-0 w-[70%] md:w-[55%] h-[500px] md:h-[600px] z-10 shadow-[0_20px_40px_rgba(0,0,0,0.1)] p-2 bg-white/60 backdrop-blur-sm rounded-sm">
+                        <img src="https://placehold.co/600x800/FADADD/3A3335?text=Portrait+One" alt="Rahul and Ananya" class="w-full h-full object-cover editorial-img">
+                    </div>
+
+                    <!-- Photo 2: Landscape Detail (Top Right, Overlapping) -->
+                    <div class="absolute top-[10%] md:top-[15%] right-0 w-[60%] md:w-[50%] h-[300px] md:h-[350px] z-20 shadow-[0_15px_30px_rgba(0,0,0,0.08)] p-2 bg-white/80 backdrop-blur-md rounded-sm">
+                        <img src="https://placehold.co/700x500/FFE4E1/3A3335?text=Landscape+Two" alt="The Ring or Hands" class="w-full h-full object-cover editorial-img">
+                    </div>
+
+                    <!-- Photo 3: Small Square (Bottom Left) -->
+                    <div class="absolute bottom-[10%] left-[5%] md:left-[10%] w-[45%] md:w-[35%] h-[250px] md:h-[300px] z-30 shadow-[0_10px_20px_rgba(0,0,0,0.06)] p-2 bg-white/90 backdrop-blur-lg rounded-sm">
+                        <img src="https://placehold.co/500x500/FFF9F9/3A3335?text=Square+Three" alt="Candid Moment" class="w-full h-full object-cover editorial-img">
+                    </div>
+
+                    <!-- Photo 4: Medium Portrait (Bottom Right) -->
+                    <div class="absolute bottom-0 right-[5%] w-[55%] md:w-[45%] h-[400px] md:h-[450px] z-10 shadow-[0_25px_50px_rgba(0,0,0,0.12)] p-2 bg-white/70 backdrop-blur-sm rounded-sm">
+                        <img src="https://placehold.co/600x750/FADADD/3A3335?text=Portrait+Four" alt="Together" class="w-full h-full object-cover editorial-img">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. MINIMALIST EVENT DETAILS -->
+            <section class="py-24 border-b border-charcoal/10 fade-in">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h2 class="font-serif italic text-4xl mb-12">The Details</h2>
+                    
+                    <div class="space-y-16">
+                        <!-- Event Block -->
+                        <div>
+                            <p class="font-sans text-xs tracking-[0.3em] uppercase text-charcoal/60 mb-4">Ceremony & Reception</p>
+                            <h3 class="font-serif text-3xl mb-4">Hotel Haveli Palace</h3>
+                            <p class="font-sans font-light text-sm leading-relaxed text-charcoal/80 mb-6">
+                                The Grand Courtyard<br>
+                                Modinagar, Uttar Pradesh 201204
+                            </p>
+                            <p class="font-sans text-[10px] tracking-widest uppercase font-medium">Sunday, October 25, 2026 • 4:00 PM</p>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="w-px h-16 bg-charcoal/20 mx-auto"></div>
+
+                        <!-- Notes Block -->
+                        <div>
+                            <p class="font-sans text-xs tracking-[0.3em] uppercase text-charcoal/60 mb-4">Dress Code</p>
+                            <p class="font-serif italic text-xl text-charcoal/90">Formal Elegance</p>
+                            <p class="font-sans font-light text-xs mt-3 text-charcoal/70">Soft pastels and muted tones are gently requested.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. SOPHISTICATED RSVP -->
+            <section class="pt-24 pb-12 fade-in">
+                <div class="max-w-xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="font-serif text-4xl mb-4">Répondez S'il Vous Plaît</h2>
+                        <p class="font-sans text-xs font-light tracking-widest uppercase text-charcoal/60">Kindly reply by September 1st</p>
+                    </div>
+
+                    <form id="rsvpForm" class="space-y-8">
+                        <!-- Name Input -->
+                        <div class="relative">
+                            <input type="text" id="name" required class="input-editorial w-full font-sans text-sm text-charcoal placeholder-transparent peer" placeholder="Name">
+                            <label for="name" class="absolute left-0 top-3 font-sans text-xs tracking-widest uppercase text-charcoal/50 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-[10px] peer-focus:text-charcoal/80">M. (Guest Name)</label>
+                        </div>
+
+                        <!-- Email Input -->
+                        <div class="relative">
+                            <input type="email" id="email" required class="input-editorial w-full font-sans text-sm text-charcoal placeholder-transparent peer" placeholder="Email">
+                            <label for="email" class="absolute left-0 top-3 font-sans text-xs tracking-widest uppercase text-charcoal/50 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-[10px] peer-focus:text-charcoal/80">Email Address</label>
+                        </div>
+
+                        <!-- Attendance Radio (Custom UI) -->
+                        <div class="pt-4">
+                            <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-charcoal/60 mb-4 text-center">Will you attend?</p>
+                            <div class="flex justify-center gap-8">
+                                <label class="cursor-pointer group flex items-center gap-2">
+                                    <input type="radio" name="attendance" value="accept" class="peer sr-only" required>
+                                    <div class="w-3 h-3 rounded-full border border-charcoal/40 peer-checked:bg-charcoal peer-checked:border-charcoal transition-colors"></div>
+                                    <span class="font-serif italic text-lg text-charcoal/80 group-hover:text-charcoal transition-colors">With Pleasure</span>
+                                </label>
+                                <label class="cursor-pointer group flex items-center gap-2">
+                                    <input type="radio" name="attendance" value="decline" class="peer sr-only">
+                                    <div class="w-3 h-3 rounded-full border border-charcoal/40 peer-checked:bg-charcoal peer-checked:border-charcoal transition-colors"></div>
+                                    <span class="font-serif italic text-lg text-charcoal/80 group-hover:text-charcoal transition-colors">With Regret</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-8 text-center">
+                            <button type="submit" class="font-sans text-[10px] font-medium tracking-[0.3em] uppercase bg-charcoal text-paper px-12 py-4 hover:bg-charcoal/80 transition-colors duration-300">
+                                Send Reply
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer Tag inside Body -->
+    <footer class="text-center py-8">
+        <p class="font-serif italic text-sm text-charcoal/50">Designed with love for R & A</p>
+    </footer>
+
+    <!-- RSVP Success Modal (Glassmorphism Style) -->
+    <div id="successModal" class="modal-bg fixed inset-0 z-[100] flex items-center justify-center p-4 bg-white/30">
+        <div class="modal-content glass-panel p-10 md:p-16 max-w-md w-full text-center rounded-2xl border border-white/60 relative">
+            <div class="w-12 h-12 mx-auto border border-charcoal/20 rounded-full flex items-center justify-center mb-6">
+                <svg class="w-5 h-5 text-charcoal/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="font-serif text-3xl mb-4 text-charcoal">Merci.</h3>
+            <p class="font-sans font-light text-sm text-charcoal/80 leading-relaxed mb-8">
+                Your response has been received. We look forward to sharing this beautiful day with you.
+            </p>
+            <button id="closeModal" class="font-sans text-[10px] tracking-[0.2em] uppercase border-b border-charcoal/30 pb-1 hover:border-charcoal transition-colors">
+                Return to Invitation
+            </button>
+        </div>
+    </div>
+
+    <!-- Interactivity Scripts -->
+    <script>
+        // Scroll Reveal Animation (Fade-in elements as they enter viewport)
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Trigger first elements immediately if in view
+        setTimeout(() => {
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if(rect.top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 100);
+
+        // RSVP Form & Modal Logic
+        const form = document.getElementById('rsvpForm');
+        const modal = document.getElementById('successModal');
+        const closeBtn = document.getElementById('closeModal');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            modal.classList.add('active');
+            form.reset();
+        });
+
+        const hideModal = () => {
+            modal.classList.remove('active');
+        };
+
+        closeBtn.addEventListener('click', hideModal);
+        
+        // Close modal if clicking outside the content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+    </script>
+</body>
+</html>
