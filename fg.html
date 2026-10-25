@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarav & Priya - The Royal Wedding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Dancing+Script:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: '#780000',
+                        maroonDark: '#4A0000',
+                        gold: '#D4AF37',
+                        goldLight: '#F1E5AC',
+                        marigold: '#F28C28',
+                        cream: '#FFFDD0',
+                        textDark: '#3E2723'
+                    },
+                    fontFamily: {
+                        heading: ['"Cinzel"', 'serif'],
+                        script: ['"Dancing Script"', 'cursive'],
+                        body: ['"Montserrat"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'mandala-pattern': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.1\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Gold Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #4A0000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F1E5AC; 
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Subtle spin animation for mandala */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+
+        /* Gold Border Effect */
+        .gold-border {
+            position: relative;
+        }
+        .gold-border::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px solid #D4AF37;
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        /* Modal transitions */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+    </style>
+</head>
+<body class="bg-cream font-body text-textDark antialiased selection:bg-gold selection:text-maroonDark overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-maroon/90 border-b-2 border-gold shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="font-script text-3xl text-gold">A & P</a>
+            <div class="hidden md:flex space-x-8 text-xs font-heading font-semibold tracking-widest uppercase text-cream">
+                <a href="#events" class="hover:text-gold transition-colors duration-300">Celebrations</a>
+                <a href="#venue" class="hover:text-gold transition-colors duration-300">Venue</a>
+                <a href="#rsvp" class="hover:text-gold transition-colors duration-300 px-4 py-1 border border-gold rounded-full">RSVP</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none text-gold">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-maroon border-b border-gold absolute w-full shadow-xl">
+            <div class="flex flex-col items-center py-6 space-y-6 text-sm font-heading tracking-widest uppercase text-cream">
+                <a href="#events" class="hover:text-gold transition-colors duration-300 mobile-link">Celebrations</a>
+                <a href="#venue" class="hover:text-gold transition-colors duration-300 mobile-link">Venue</a>
+                <a href="#rsvp" class="hover:text-gold transition-colors duration-300 mobile-link border-b border-gold pb-1">RSVP</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center bg-maroon text-cream overflow-hidden pt-20 bg-mandala-pattern">
+        <!-- Decorative Mandala Centerpiece -->
+        <div class="absolute opacity-20 w-[800px] h-[800px] flex items-center justify-center animate-spin-slow">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="0.5" class="w-full h-full">
+                <circle cx="50" cy="50" r="45" />
+                <circle cx="50" cy="50" r="35" />
+                <path d="M50 5 L55 35 L85 50 L55 65 L50 95 L45 65 L15 50 L45 35 Z" />
+                <path d="M50 15 L53 37 L75 50 L53 63 L50 85 L47 63 L25 50 L47 37 Z" />
+            </svg>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto reveal flex flex-col items-center">
+            <!-- Top ornate divider -->
+            <svg class="w-32 h-12 text-gold mb-6" viewBox="0 0 100 30" fill="currentColor">
+                <path d="M10,15 Q50,0 90,15 Q50,30 10,15 Z" />
+                <circle cx="50" cy="15" r="4" fill="#FFFDD0" />
+            </svg>
+
+            <p class="font-heading text-sm md:text-base tracking-[0.4em] uppercase text-gold mb-4">Together with their families</p>
+            
+            <h1 class="font-script text-7xl md:text-8xl lg:text-9xl mb-4 text-gold drop-shadow-lg leading-tight py-4">
+                Aarav <br class="md:hidden"> <span class="text-5xl md:text-7xl text-cream px-2">&amp;</span> <br class="md:hidden"> Priya
+            </h1>
+            
+            <p class="font-heading text-lg md:text-xl tracking-[0.2em] text-cream mb-8">Invite you to celebrate their wedding</p>
+            
+            <div class="flex items-center justify-center gap-4 font-heading text-sm md:text-lg tracking-widest uppercase border-y border-gold/50 py-4 px-8 text-goldLight">
+                <span>November 12, 2026</span>
+                <span class="text-marigold text-xl">✦</span>
+                <span>New Delhi</span>
+            </div>
+
+            <!-- Bottom ornate divider -->
+            <svg class="w-32 h-12 text-gold mt-8" viewBox="0 0 100 30" fill="currentColor">
+                <path d="M10,15 Q50,0 90,15 Q50,30 10,15 Z" />
+                <circle cx="50" cy="15" r="4" fill="#FFFDD0" />
+            </svg>
+        </div>
+    </header>
+
+    <!-- Schedule of Events -->
+    <section id="events" class="py-24 bg-cream relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-4xl md:text-5xl text-maroon mb-4 font-bold">The Celebrations</h2>
+                <div class="w-32 h-1 bg-gold mx-auto rounded-full"></div>
+                <p class="mt-4 font-body text-textDark/80 italic">Join us for a tapestry of traditions</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Haldi -->
+                <div class="bg-white p-8 text-center rounded-t-full rounded-b-lg shadow-xl gold-border reveal border border-gold/30">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-marigold/10 rounded-full flex items-center justify-center text-marigold border border-marigold/30">
+                        <!-- Floral Icon -->
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.5 2 7.5 4 7.5 6.5C7.5 7.4 7.8 8.2 8.3 8.9C6 9.7 4 12 4 14.5C4 17 6 19 8.5 19C9.4 19 10.2 18.7 10.9 18.2C11.7 20.5 14 22 16.5 22C19 22 21 20 21 17.5C21 16.6 20.7 15.8 20.2 15.1C22.5 14.3 24.5 12 24.5 9.5C24.5 7 22.5 5 20 5C19.1 5 18.3 5.3 17.6 5.8C16.8 3.5 14.5 2 12 2ZM12 11C13.1 11 14 11.9 14 13C14 14.1 13.1 15 12 15C10.9 15 10 14.1 10 13C10 11.9 10.9 11 12 11Z"/></svg>
+                    </div>
+                    <h3 class="font-heading text-2xl text-maroon mb-2 font-bold">Haldi Ceremony</h3>
+                    <p class="text-gold font-bold tracking-wider text-sm mb-4">10th November • 10:00 AM</p>
+                    <p class="text-sm leading-relaxed text-textDark/80 mb-6">
+                        A morning of vibrant yellow hues, joy, and blessings as we apply turmeric paste to the bride and groom.
+                    </p>
+                    <p class="text-xs font-semibold uppercase tracking-widest text-marigold">Attire: Yellow & White</p>
+                </div>
+
+                <!-- Mehendi & Sangeet -->
+                <div class="bg-maroon text-cream p-8 text-center rounded-lg shadow-2xl transform lg:-translate-y-8 gold-border reveal delay-100 border border-gold">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-gold/10 rounded-full flex items-center justify-center text-gold border border-gold/30">
+                        <!-- Music/Dance Icon -->
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                    </div>
+                    <h3 class="font-heading text-2xl text-goldLight mb-2 font-bold">Mehendi & Sangeet</h3>
+                    <p class="text-gold font-bold tracking-wider text-sm mb-4">11th November • 6:30 PM</p>
+                    <p class="text-sm leading-relaxed text-cream/90 mb-6">
+                        An evening of henna artistry followed by music, spectacular dance performances, and celebration.
+                    </p>
+                    <p class="text-xs font-semibold uppercase tracking-widest text-goldLight">Attire: Festive & Glamorous</p>
+                </div>
+
+                <!-- Wedding -->
+                <div class="bg-white p-8 text-center rounded-b-full rounded-t-lg shadow-xl gold-border reveal delay-200 border border-gold/30">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-maroon/10 rounded-full flex items-center justify-center text-maroon border border-maroon/30">
+                        <!-- Rings Icon -->
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a3.75 3.75 0 11-7.82 0 3.75 3.75 0 017.82 0zM12 15.75v-3"></path></svg>
+                    </div>
+                    <h3 class="font-heading text-2xl text-maroon mb-2 font-bold">The Royal Wedding</h3>
+                    <p class="text-gold font-bold tracking-wider text-sm mb-4">12th November • 7:00 PM</p>
+                    <p class="text-sm leading-relaxed text-textDark/80 mb-6">
+                        The Baraat arrives, followed by the Jai Mala, traditional pheras around the holy fire, and dinner.
+                    </p>
+                    <p class="text-xs font-semibold uppercase tracking-widest text-maroon">Attire: Traditional Indian</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Details Section -->
+    <section id="venue" class="py-24 bg-maroonDark text-cream relative bg-mandala-pattern">
+        <div class="max-w-5xl mx-auto px-6 text-center reveal">
+            <h2 class="font-heading text-4xl md:text-5xl text-goldLight mb-6 font-bold">The Venue</h2>
+            <div class="w-24 h-px bg-gold mx-auto mb-10"></div>
+            
+            <div class="bg-maroon border-2 border-gold p-8 md:p-16 rounded-xl shadow-2xl relative">
+                <!-- Corner Decorations -->
+                <div class="absolute top-4 left-4 text-gold"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14 10L24 12L14 14L12 24L10 14L0 12L10 10L12 0Z"/></svg></div>
+                <div class="absolute top-4 right-4 text-gold"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14 10L24 12L14 14L12 24L10 14L0 12L10 10L12 0Z"/></svg></div>
+                <div class="absolute bottom-4 left-4 text-gold"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14 10L24 12L14 14L12 24L10 14L0 12L10 10L12 0Z"/></svg></div>
+                <div class="absolute bottom-4 right-4 text-gold"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14 10L24 12L14 14L12 24L10 14L0 12L10 10L12 0Z"/></svg></div>
+
+                <h3 class="font-heading text-3xl md:text-4xl text-gold mb-4">Taj Palace Hotel</h3>
+                <p class="text-lg md:text-xl font-body mb-2">Durbar Hall & Gardens</p>
+                <p class="text-cream/80 mb-8 max-w-md mx-auto">Sardar Patel Marg, Diplomatic Enclave, Chanakyapuri, New Delhi, 110021</p>
+                
+                <a href="#" class="inline-block bg-gold text-maroonDark font-heading font-bold px-8 py-3 uppercase tracking-widest text-sm hover:bg-goldLight hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                    Get Directions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-24 bg-cream relative">
+        <div class="max-w-3xl mx-auto px-6 text-center reveal">
+            <h2 class="font-heading text-4xl md:text-5xl text-maroon mb-4 font-bold">Bless Us With Your Presence</h2>
+            <p class="text-textDark/70 mb-10 font-medium">Please let us know if you can make it by October 15th, 2026</p>
+            
+            <form id="rsvp-form" class="bg-white p-8 md:p-12 rounded-lg shadow-2xl text-left border-t-8 border-gold">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-maroon mb-2">Full Name *</label>
+                        <input type="text" required class="w-full bg-cream border-b-2 border-maroon/30 px-4 py-3 focus:outline-none focus:border-gold transition-colors text-textDark bg-opacity-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-maroon mb-2">Email Address</label>
+                        <input type="email" class="w-full bg-cream border-b-2 border-maroon/30 px-4 py-3 focus:outline-none focus:border-gold transition-colors text-textDark bg-opacity-50">
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-maroon mb-4">Will you be attending? *</label>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="attendance" value="yes" class="peer sr-only" required>
+                            <div class="text-center p-4 border-2 border-maroon/20 rounded peer-checked:bg-maroon peer-checked:text-gold peer-checked:border-maroon transition-all">
+                                <span class="font-heading font-bold block mb-1">With Bells On</span>
+                            </div>
+                        </label>
+                        <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="attendance" value="no" class="peer sr-only">
+                            <div class="text-center p-4 border-2 border-maroon/20 rounded peer-checked:bg-gray-200 peer-checked:text-textDark peer-checked:border-gray-300 transition-all">
+                                <span class="font-heading font-bold block mb-1">Will Be Missed</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-maroon mb-2">Number of Guests *</label>
+                    <select required class="w-full bg-cream border-b-2 border-maroon/30 px-4 py-3 focus:outline-none focus:border-gold transition-colors text-textDark bg-opacity-50 appearance-none">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-maroon mb-2">Message for the Couple</label>
+                    <textarea rows="3" class="w-full bg-cream border-b-2 border-maroon/30 px-4 py-3 focus:outline-none focus:border-gold transition-colors text-textDark bg-opacity-50"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-maroon text-gold font-heading font-bold uppercase tracking-widest text-lg py-4 rounded hover:bg-maroonDark transition-colors duration-300 shadow-md">
+                    Send RSVP
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-maroonDark text-cream py-16 text-center border-t-4 border-gold bg-mandala-pattern">
+        <div class="max-w-4xl mx-auto px-6 relative z-10 bg-maroonDark/80 p-8 rounded-xl backdrop-blur-sm">
+            <h2 class="font-script text-5xl mb-4 text-gold">Aarav & Priya</h2>
+            <p class="font-heading text-sm tracking-widest uppercase text-goldLight mb-6">Thank you for your blessings</p>
+            <div class="flex justify-center mb-6">
+                <svg class="w-16 h-8 text-gold" viewBox="0 0 100 30" fill="currentColor">
+                    <path d="M10,15 Q50,0 90,15 Q50,30 10,15 Z" />
+                    <circle cx="50" cy="15" r="3" fill="#4A0000" />
+                </svg>
+            </div>
+            <p class="text-xs text-cream/50 uppercase tracking-widest font-body">Looking forward to celebrating with you</p>
+        </div>
+    </footer>
+
+    <!-- Custom Success Message Modal (Replaces Alert) -->
+    <div id="success-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="bg-maroon border-2 border-gold p-8 md:p-12 rounded-xl shadow-2xl max-w-md w-full text-center modal-enter relative" id="modal-content">
+            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-cream text-maroon rounded-full p-2 border-2 border-gold">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="font-heading text-3xl mt-4 mb-3 text-gold">Dhanyawad!</h3>
+            <p class="text-cream/90 mb-8 font-body">Your RSVP has been received. We eagerly await your presence at our wedding.</p>
+            <button id="close-modal" class="bg-gold text-maroonDark font-heading font-bold px-8 py-2 uppercase tracking-widest text-sm hover:bg-goldLight transition-colors duration-300 rounded shadow-lg">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Scroll Reveal Animation Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.add('py-3');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // RSVP Form Handling (Custom Modal instead of Alert)
+        const form = document.getElementById('rsvp-form');
+        const modal = document.getElementById('success-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.getElementById('close-modal');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.add('modal-enter-active');
+            }, 10);
+            
+            form.reset();
+        });
+
+        const hideModal = () => {
+            modalContent.classList.remove('modal-enter-active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        };
+
+        closeModal.addEventListener('click', hideModal);
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+    </script>
+</body>
+</html>
