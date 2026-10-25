@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul & Sakshi - Wedding Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sand: '#F7F4EF',        // Warm beige background
+                        sandDark: '#E8E1D5',    // Slightly darker sand for borders/accents
+                        sage: '#8F9B82',        // Muted botanical green
+                        sageDark: '#6A775E',    // Darker sage
+                        terracotta: '#C17767',  // Earthy clay/terracotta
+                        earth: '#4A4036',       // Dark warm brown for text
+                        leaf: '#2D3827'         // Very dark green for headings
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Earthy Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F4EF; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8F9B82; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6A775E; 
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Organic shapes for images */
+        .organic-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            transition: border-radius 0.5s ease-in-out;
+        }
+        .organic-shape:hover {
+            border-radius: 50%;
+        }
+
+        /* Modal transitions */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        /* Subtle image zoom */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 0.8s ease;
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-sand font-sans text-earth antialiased selection:bg-sage selection:text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-sand/80 border-b border-sandDark/50 shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-serif text-3xl text-leaf font-medium">R & P</a>
+            <div class="hidden md:flex space-x-8 text-xs font-semibold tracking-[0.2em] uppercase text-earth">
+                <a href="#story" class="hover:text-terracotta transition-colors duration-300">Our Story</a>
+                <a href="#gallery" class="hover:text-terracotta transition-colors duration-300">Gallery</a>
+                <a href="#details" class="hover:text-terracotta transition-colors duration-300">Details</a>
+                <a href="#rsvp" class="hover:text-terracotta transition-colors duration-300 border-b border-terracotta pb-1">RSVP</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none text-leaf">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-sand border-b border-sandDark absolute w-full shadow-lg">
+            <div class="flex flex-col items-center py-6 space-y-5 text-xs font-semibold tracking-[0.2em] uppercase text-earth">
+                <a href="#story" class="hover:text-terracotta transition-colors duration-300 mobile-link">Our Story</a>
+                <a href="#gallery" class="hover:text-terracotta transition-colors duration-300 mobile-link">Gallery</a>
+                <a href="#details" class="hover:text-terracotta transition-colors duration-300 mobile-link">Details</a>
+                <a href="#rsvp" class="hover:text-terracotta transition-colors duration-300 mobile-link text-terracotta">RSVP</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Hero Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://placehold.co/1920x1080/E8E1D5/6A775E?text=Boho+Couple+Placeholder" alt="Couple" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-sand via-sand/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-3xl mx-auto reveal mt-20">
+            <!-- Botanical SVG Accent -->
+            <div class="flex justify-center mb-6 text-sage">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22c-4-4-4-10 0-14 4 4 4 10 0 14z"/>
+                    <path d="M12 8c-3-3-3-7 0-10 3 3 3 7 0 10z"/>
+                    <path d="M12 22V8"/>
+                </svg>
+            </div>
+
+            <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase text-terracotta mb-4 font-semibold">Join us to celebrate</p>
+            
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl mb-6 text-leaf font-medium">
+                Rahul <span class="italic font-light text-5xl md:text-7xl">&amp;</span> Priya
+            </h1>
+            
+            <p class="font-serif text-xl md:text-2xl italic text-earth mb-10">Two roots growing into one tree.</p>
+            
+            <div class="inline-flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 font-sans text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-earth border-y border-sageDark/30 py-4 px-8">
+                <span>December 10, 2026</span>
+                <span class="text-sage text-lg hidden md:block">✦</span>
+                <span class="text-sage text-lg md:hidden">—</span>
+                <span>Modinagar, UP</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Our Story Section -->
+    <section id="story" class="py-24 bg-white relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Image Side (Organic Shape) -->
+                <div class="w-full lg:w-1/2 relative reveal">
+                    <div class="aspect-square max-w-md mx-auto organic-shape overflow-hidden border-8 border-sand shadow-2xl relative z-10 img-zoom-container">
+                        <img src="https://placehold.co/800x800/8F9B82/FFFFFF?text=Our+Story" alt="Our Story" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Decorative backdrop -->
+                    <div class="absolute inset-0 max-w-md mx-auto organic-shape border-2 border-terracotta/40 transform translate-x-6 translate-y-6 -z-10 transition-transform duration-700"></div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="w-full lg:w-1/2 space-y-6 text-center lg:text-left reveal delay-100">
+                    <h2 class="font-serif text-4xl md:text-5xl text-leaf mb-2">Our Journey</h2>
+                    <div class="w-16 h-px bg-terracotta mx-auto lg:mx-0 mb-6"></div>
+                    
+                    <p class="font-serif text-xl italic text-sageDark">From a chance meeting to a forever promise.</p>
+                    <p class="text-sm md:text-base text-earth/80 leading-relaxed font-light">
+                        Our story didn't start with fireworks; it started like a slow sunrise. A shared cup of chai, long walks under ancient trees, and conversations that felt like coming home. We found in each other a quiet peace and an endless adventure.
+                    </p>
+                    <p class="text-sm md:text-base text-earth/80 leading-relaxed font-light">
+                        As we take this beautiful step to intertwine our roots, we want to be surrounded by the people who have nurtured us. We cannot wait to celebrate this earthy, magical union with you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-Image Photo Gallery -->
+    <section id="gallery" class="py-24 bg-sand relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl text-leaf mb-4">Captured Moments</h2>
+                <div class="flex justify-center text-terracotta mb-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 4 Images Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <!-- Image 1 -->
+                <div class="reveal img-zoom-container rounded-tl-[4rem] rounded-br-[4rem] overflow-hidden shadow-lg aspect-square border-4 border-white">
+                    <img src="https://placehold.co/800x800/E8E1D5/4A4036?text=Gallery+1" alt="Gallery 1" class="w-full h-full object-cover">
+                </div>
+                <!-- Image 2 -->
+                <div class="reveal delay-100 img-zoom-container rounded-tr-[4rem] rounded-bl-[4rem] overflow-hidden shadow-lg aspect-square border-4 border-white">
+                    <img src="https://placehold.co/800x800/8F9B82/FFFFFF?text=Gallery+2" alt="Gallery 2" class="w-full h-full object-cover">
+                </div>
+                <!-- Image 3 -->
+                <div class="reveal delay-200 img-zoom-container rounded-tr-[4rem] rounded-bl-[4rem] overflow-hidden shadow-lg aspect-square border-4 border-white">
+                    <img src="https://placehold.co/800x800/C17767/FFFFFF?text=Gallery+3" alt="Gallery 3" class="w-full h-full object-cover">
+                </div>
+                <!-- Image 4 -->
+                <div class="reveal delay-300 img-zoom-container rounded-tl-[4rem] rounded-br-[4rem] overflow-hidden shadow-lg aspect-square border-4 border-white">
+                    <img src="https://placehold.co/800x800/E8E1D5/4A4036?text=Gallery+4" alt="Gallery 4" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="details" class="py-24 bg-white relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl text-leaf mb-4">When & Where</h2>
+                <div class="w-16 h-px bg-sage mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Ceremony Card -->
+                <div class="bg-sand/30 p-10 rounded-2xl border border-sandDark text-center reveal hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-white rounded-full flex items-center justify-center text-sageDark shadow-sm">
+                        <!-- Sun/Flower Icon -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-3xl text-leaf mb-2">The Vows</h3>
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-terracotta mb-6 font-semibold">10:00 AM</p>
+                    <div class="space-y-2 text-earth font-light mb-8">
+                        <p class="font-serif text-xl font-medium text-leaf">Botanical Gardens</p>
+                        <p class="text-sm">Under the Banyan Tree</p>
+                        <p class="text-sm">Modinagar, UP 201204</p>
+                    </div>
+                    <p class="text-xs italic text-sageDark">Traditional earthly attire requested.</p>
+                </div>
+
+                <!-- Reception Card -->
+                <div class="bg-sand/30 p-10 rounded-2xl border border-sandDark text-center reveal delay-100 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-white rounded-full flex items-center justify-center text-terracotta shadow-sm">
+                        <!-- Feast/Cheers Icon -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-3xl text-leaf mb-2">The Celebration</h3>
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-terracotta mb-6 font-semibold">6:00 PM</p>
+                    <div class="space-y-2 text-earth font-light mb-8">
+                        <p class="font-serif text-xl font-medium text-leaf">The Greenery Courtyard</p>
+                        <p class="text-sm">Open Air Banquet</p>
+                        <p class="text-sm">Modinagar, UP 201204</p>
+                    </div>
+                    <p class="text-xs italic text-sageDark">An evening of feast, folk music, and dancing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-24 bg-sage/10 relative border-t border-sage/20">
+        <div class="max-w-3xl mx-auto px-6 reveal">
+            <div class="text-center mb-10">
+                <h2 class="font-serif text-4xl md:text-5xl text-leaf mb-4">Be Our Guest</h2>
+                <p class="font-sans font-light text-sm text-earth/80">Kindly respond by the first of November</p>
+            </div>
+            
+            <form id="rsvp-form" class="bg-white p-8 md:p-12 rounded-xl shadow-lg border border-sandDark">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-widest text-leaf mb-2">Full Name *</label>
+                        <input type="text" required class="w-full bg-sand/50 border border-sandDark px-4 py-3 rounded-md focus:outline-none focus:border-sage focus:ring-1 focus:ring-sage transition-colors text-earth">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-widest text-leaf mb-2">Email Address</label>
+                        <input type="email" required class="w-full bg-sand/50 border border-sandDark px-4 py-3 rounded-md focus:outline-none focus:border-sage focus:ring-1 focus:ring-sage transition-colors text-earth">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-xs font-semibold uppercase tracking-widest text-leaf mb-4">Will you attend? *</label>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="attendance" value="yes" class="peer sr-only" required>
+                            <div class="text-center p-4 border border-sandDark rounded-md peer-checked:bg-sage peer-checked:text-white peer-checked:border-sage transition-all hover:bg-sand">
+                                <span class="font-serif text-xl block mb-1">Joyfully Accept</span>
+                            </div>
+                        </label>
+                        <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="attendance" value="no" class="peer sr-only">
+                            <div class="text-center p-4 border border-sandDark rounded-md peer-checked:bg-sandDark peer-checked:text-earth peer-checked:border-sandDark transition-all hover:bg-sand">
+                                <span class="font-serif text-xl block mb-1">Regretfully Decline</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-xs font-semibold uppercase tracking-widest text-leaf mb-2">Number of Guests *</label>
+                    <select required class="w-full bg-sand/50 border border-sandDark px-4 py-3 rounded-md focus:outline-none focus:border-sage focus:ring-1 focus:ring-sage transition-colors text-earth appearance-none">
+                        <option value="" disabled selected>Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-xs font-semibold uppercase tracking-widest text-leaf mb-2">Dietary Requirements / A note for us</label>
+                    <textarea rows="3" class="w-full bg-sand/50 border border-sandDark px-4 py-3 rounded-md focus:outline-none focus:border-sage focus:ring-1 focus:ring-sage transition-colors text-earth"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-terracotta text-white font-sans font-semibold uppercase tracking-widest text-sm py-4 rounded-md hover:bg-earth transition-colors duration-300 shadow-md">
+                    Send RSVP
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-earth text-sand py-16 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex justify-center text-sage mb-6">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M12 22c-4-4-4-10 0-14 4 4 4 10 0 14z"/>
+                </svg>
+            </div>
+            <h2 class="font-serif text-4xl md:text-5xl mb-4 text-sand">Rahul & Priya</h2>
+            <p class="font-sans text-xs font-medium tracking-[0.2em] uppercase text-sand/60 mb-8">10 . 12 . 2026</p>
+            <p class="text-xs text-sand/40 uppercase tracking-widest font-sans">We can't wait to share our special day with you.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Success Message Modal -->
+    <div id="success-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-earth/60 backdrop-blur-sm p-4">
+        <div class="bg-sand border border-sage p-8 md:p-12 rounded-xl shadow-2xl max-w-md w-full text-center modal-enter relative" id="modal-content">
+            <div class="w-16 h-16 mx-auto mb-4 bg-sage/20 rounded-full flex items-center justify-center text-sageDark">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="font-serif text-3xl mb-2 text-leaf">Thank You!</h3>
+            <p class="text-earth/80 mb-8 font-sans text-sm font-light">Your RSVP has been warmly received. We look forward to celebrating with you.</p>
+            <button id="close-modal" class="bg-sageDark text-white font-sans font-medium px-8 py-3 uppercase tracking-widest text-xs hover:bg-earth transition-colors duration-300 rounded-md shadow-sm">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Scroll Reveal Animation Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-4', 'shadow-sm');
+            } else {
+                navbar.classList.add('py-4', 'shadow-sm');
+                navbar.classList.remove('py-2', 'shadow-md');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // RSVP Form Handling (Custom Modal instead of Alert)
+        const form = document.getElementById('rsvp-form');
+        const modal = document.getElementById('success-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.getElementById('close-modal');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.add('modal-enter-active');
+            }, 10);
+            
+            form.reset();
+        });
+
+        const hideModal = () => {
+            modalContent.classList.remove('modal-enter-active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 400); // Matches transition duration
+        };
+
+        closeModal.addEventListener('click', hideModal);
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+    </script>
+</body>
+</html>
